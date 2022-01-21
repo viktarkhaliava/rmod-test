@@ -1,0 +1,16 @@
+<div class="personal-information-container">
+    <form [formGroup]="personalInfoForm" (ngSubmit)="onSubmit()" class="personal-information-form">
+        <mat-form-field appearance="standard">
+            <mat-label>First Name</mat-label>
+            <input  id="firstName" formControlName="firstName" matInput placeholder="First Name">
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+            <mat-label>Last Name</mat-label>
+            <input id="lastName" formControlName="lastName" matInput placeholder="Last Name">
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">Continue</button>
+        <div *ngIf="personalInfo">
+            <p>Value: {{ personalInfo.firstName }}</p>
+        </div>
+    </form>
+</div>
