@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>Review</h1>
+<div mat-dialog-content>
+  <p>Please, carefully review the information you have entered</p>
+  <div *ngIf="personalInfo">
+    <p>First Name: {{ personalInfo.firstName }}</p>
+    <p>Last Name: {{ personalInfo.lastName }}</p>
+  </div>
+  <div *ngIf="contactInfo">
+    <p>Country: {{ contactInfo.country }}</p>
+    <p>Phone number: {{ contactInfo.code }} {{ contactInfo.phoneNumber }}</p>
+  </div>
+  <!-- <mat-form-field appearance="fill">
+    <mat-label>Favorite Animal</mat-label>
+    <input matInput [(ngModel)]="data.animal">
+  </mat-form-field> -->
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <!-- <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button> -->
+</div>
