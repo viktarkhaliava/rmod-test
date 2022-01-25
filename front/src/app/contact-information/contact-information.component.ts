@@ -6,7 +6,9 @@ import { FormGroup, FormControl } from '@angular/forms';
 
 import { AppState } from '../state/app.state';
 import { ContactInfo, CountryCode } from './contact-info.model';
-import { setCountryCodes } from '../actions/contact-information.actions';
+import { setContactInformation, setCountryCodes } from '../actions/contact-information.actions';
+import { MatDialog } from '@angular/material/dialog';
+import { UserInfoReviewComponent } from '../user-info-review/user-info-review.component';
 
 @Component({
   selector: '.app-contact-information',
@@ -18,6 +20,7 @@ export class ContactInformationComponent implements OnInit {
     private store: Store<AppState>,
     private router: Router,
     private http: HttpClient,
+    public dialog: MatDialog,
   ) {
     this.contactInfo = {} as ContactInfo;
   }
@@ -25,6 +28,7 @@ export class ContactInformationComponent implements OnInit {
 
   contactInfoForm: FormGroup = new FormGroup({
     country: new FormControl(''),
+    code: new FormControl(''),
     phoneNumber: new FormControl(''),
   });
 
@@ -33,11 +37,25 @@ export class ContactInformationComponent implements OnInit {
     this.http.get('http://localhost:3000/country-codes').subscribe((data: any) => {
       this.store.dispatch(setCountryCodes({ data }));
     });
-    console.log(this.contactInfo, 'this.contactInfo');
-    
+
   }
 
   onSubmit() {
-    
+    const phoneNumber = this.contactInfoForm.get('phoneNumber')?.value || '';
+    this.store.dispatch(setContactInformation({ phoneNumber, code: this.contactInfo.code, country: this.contactInfo.country }));
+
+    const dialogRef = this.dialog.open(UserInfoReviewComponent, {
+      width: '500px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
+  onCountryChange(event: any) {
+    const { value } = event;
+    if (value.code) {
+      this.store.dispatch(setContactInformation({ country: value.country, code: value.code, phoneNumber: 0 }));
+    }
   }
 }

@@ -2,11 +2,16 @@
     <form [formGroup]="contactInfoForm" (ngSubmit)="onSubmit()" class="contact-information-form">
         <mat-form-field appearance="fill">
             <mat-label>Country: </mat-label>
-            <mat-select>
+            <mat-select (selectionChange)="onCountryChange($event)">
                 <mat-option *ngFor="let country of contactInfo.countryCodes" [value]="country">
-                    {{country}}
+                    {{country.country}}
                 </mat-option>
             </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+            <mat-label>Phone number</mat-label>
+            <span matPrefix>{{ contactInfo.code }} &nbsp;</span>
+            <input id="phoneNumber" formControlName="phoneNumber" matInput placeholder="Phone Number">
         </mat-form-field>
         <button mat-raised-button color="primary" type="submit">Continue</button>
     </form>

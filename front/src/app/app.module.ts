@@ -12,17 +12,19 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
-
+import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { rootStore } from './state';
 import { ContactInformationComponent } from './contact-information/contact-information.component';
+import { UserInfoReviewComponent } from './user-info-review/user-info-review.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PersonalInformationComponent,
-    ContactInformationComponent
+    ContactInformationComponent,
+    UserInfoReviewComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +36,7 @@ import { ContactInformationComponent } from './contact-information/contact-infor
     MatButtonModule,
     MatSelectModule,
     ReactiveFormsModule,
+    MatDialogModule,
     HttpClientModule,
     StoreModule.forRoot({ ...rootStore })
   ],
