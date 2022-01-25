@@ -1,6 +1,7 @@
 import { NgModule, InjectionToken } from '@angular/core';
 import { StoreModule, ActionReducerMap } from '@ngrx/store';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +11,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
 
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -30,7 +32,9 @@ import { ContactInformationComponent } from './contact-information/contact-infor
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatSelectModule,
     ReactiveFormsModule,
+    HttpClientModule,
     StoreModule.forRoot({ ...rootStore })
   ],
   providers: [],

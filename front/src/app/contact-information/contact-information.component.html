@@ -1,13 +1,13 @@
 <div class="contact-information-container">
     <form [formGroup]="contactInfoForm" (ngSubmit)="onSubmit()" class="contact-information-form">
-        <!-- <mat-form-field appearance="standard">
-            <mat-label>First Name</mat-label>
-            <input  id="firstName" formControlName="firstName" matInput placeholder="First Name">
+        <mat-form-field appearance="fill">
+            <mat-label>Country: </mat-label>
+            <mat-select>
+                <mat-option *ngFor="let country of contactInfo.countryCodes" [value]="country">
+                    {{country}}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
-        <mat-form-field appearance="standard">
-            <mat-label>Last Name</mat-label>
-            <input id="lastName" formControlName="lastName" matInput placeholder="Last Name">
-        </mat-form-field> -->
         <button mat-raised-button color="primary" type="submit">Continue</button>
     </form>
 </div>
