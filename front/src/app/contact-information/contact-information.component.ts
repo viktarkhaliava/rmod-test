@@ -9,6 +9,7 @@ import { ContactInfo, CountryCode } from './contact-info.model';
 import { setContactInformation, setCountryCodes } from '../actions/contact-information.actions';
 import { MatDialog } from '@angular/material/dialog';
 import { UserInfoReviewComponent } from '../user-info-review/user-info-review.component';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: '.app-contact-information',
@@ -34,10 +35,9 @@ export class ContactInformationComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.select('contactInfo').subscribe((sub) => this.contactInfo = sub);
-    this.http.get('http://localhost:3000/country-codes').subscribe((data: any) => {
-      this.store.dispatch(setCountryCodes({ data }));
+    this.http.get(`${environment.apiURL}/country-codes`).subscribe((data: any) => {
+      this.store.dispatch(setCountryCodes({ data: data?.body?.default || [] }));
     });
-
   }
 
   onSubmit() {
